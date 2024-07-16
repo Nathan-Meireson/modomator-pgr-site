@@ -53,6 +53,11 @@ type Change = {
 
 const changes: Change[] = [
   {
+    version: "1.3.0",
+    date: "2024-07-16",
+    description: ["Added full support for Mobile Use"]
+  },
+  {
     version: "1.2.0",
     date: "2022-09-25",
     description: ["Dark Mode added"]

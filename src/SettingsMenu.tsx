@@ -14,6 +14,8 @@ const SettingsMenu = (): JSX.Element => {
 
   const [openInDiscord, setOpenInDiscord] = useLocalStorage("openInDiscord", true);
 
+  const [usingMobile, setUsingMobile] = useLocalStorage("usingMobile", false);
+
   const [darkMode, setDarkMode] = useLocalStorage("darkMode", true);
   const { switcher, themes } = useThemeSwitcher();
 
@@ -38,6 +40,12 @@ const SettingsMenu = (): JSX.Element => {
         </Col>
       </Row>
       <SettingsDivider />
+      <Row align="middle" gutter={[10, 0]}>
+        <Col>Using Mobile</Col>
+        <Col>
+          <Switch defaultChecked={usingMobile} onChange={setUsingMobile} />
+        </Col>
+      </Row>
       <Row justify="center">{`v${latestVersion}`}</Row>
       <Row justify="center">
         <Link to="modomator/changelog">View changelog</Link>

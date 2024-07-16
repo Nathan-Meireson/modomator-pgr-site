@@ -62,7 +62,7 @@ const ModForm = (): JSX.Element => {
         form.setFieldsValue({ textarea: moderation.current?.moderationString });
         setClipboardEnabled(true);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, [id, form, action, reason, modifiers, muteHours, moderation]);
 
   return (
@@ -161,17 +161,22 @@ const ModForm = (): JSX.Element => {
                 copyToClipboard(form.getFieldValue("textarea")).then(() => {
                   openNotification(action?.toString() ?? "UNKNOWN");
                   if (localStorage.getItem("openInDiscord") === "true")
-                    window.open(moderation.current?.discordChannelURL);
+                    var discordChannelURL = moderation.current?.discordChannelURL;
+
+                  if (localStorage.getItem("usingMobile") === "true") {
+                    discordChannelURL = discordChannelURL?.replace('discord:', 'https:');
+                  }
+                  window.open(discordChannelURL);
                 });
               }}
             />
           </Tooltip>
         </Form.Item>
       </Form>
-      <ClearContainer>      
+      <ClearContainer>
         <Radio.Button type="link" onClick={() => form.resetFields()}>
           Clear
-        </Radio.Button>        
+        </Radio.Button>
       </ClearContainer>
     </div>
   );
